@@ -7,6 +7,22 @@ export const Config = {
     scenes: {
         "Game": Game
     },
+    platforms: {
+        ranges: {
+            rows: {
+                min: 2,
+                max: 6
+            },
+            cols: {
+                min: 3,
+                max: 9
+            },
+            offset: {
+                min: 60,
+                max: 200
+            }
+        }
+    },
     hero: {
         position: {
             x: 350,
