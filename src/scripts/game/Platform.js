@@ -13,6 +13,20 @@ export class Platform {
         
         this.dx = App.config.platforms.moveSpeed;
         this.createBody();
+
+        this.diamonds = [];
+        this.createDiamonds();
+    }
+    createDiamonds() {
+        const y = App.config.diamonds.offset.min + Math.random() * (App.config.diamonds.offset.max - App.config.diamonds.offset.min);
+
+        for (let i = 0; i < this.cols; i++) {
+            if (Math.random() < App.config.diamonds.chance) {
+                const diamond = new Diamond(this.tileSize * i, -y);
+                this.container.addChild(diamond.sprite);
+                this.diamonds.push(diamond);
+            }
+        }
     }
     createBody() {
         // create a physical body
