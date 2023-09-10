@@ -8,6 +8,7 @@ export const Config = {
         "Game": Game
     },
     platforms: {
+        moveSpeed: -1.5,
         ranges: {
             rows: {
                 min: 2,
