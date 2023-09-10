@@ -7,6 +7,16 @@ export class Hero {
 
         this.createBody();
         App.app.ticker.add(this.update.bind(this));
+
+        this.dy = App.config.hero.jumpSpeed;
+        this.maxJumps = App.config.hero.maxJumps;
+        this.jumpIndex = 0;
+    }
+    startJump() {
+        if (this.jumpIndex < this.maxJumps) {
+            ++this.jumpIndex;
+            Matter.Body.setVelocity(this.body, { x: 0, y: -this.dy });
+        }
     }
     createBody() {
         this.body = Matter.Bodies.rectangle(this.sprite.x + this.sprite.width / 2, this.sprite.y + this.sprite.height / 2, this.sprite.width, this.sprite.height, {friction: 0});
