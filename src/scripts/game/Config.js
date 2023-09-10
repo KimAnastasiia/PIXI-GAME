@@ -26,7 +26,7 @@ export const Config = {
     hero: {
         position: {
             x: 350,
-            y: 595
+            y:400
         }
     },
 };
