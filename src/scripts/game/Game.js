@@ -2,14 +2,26 @@ import { App } from "../system/App";
 import { Scene } from "../system/Scene";
 import { Background } from "./Background";
 import { Hero } from "./Hero";
-import { Platform } from "./Platform";
 import { Platforms } from "./Platforms";
-
+import * as Matter from 'matter-js';
 export class Game extends Scene {
     create() {
         this.createBackground();
         this.createHero()
         this.createPlatforms()
+        this.setEvents();
+    }
+    setEvents() {
+        Matter.Events.on(App.physics, 'collisionStart', this.onCollisionStart.bind(this));
+    }
+    onCollisionStart(event) {
+        const colliders = [event.pairs[0].bodyA, event.pairs[0].bodyB];
+        const hero = colliders.find(body => body.gameHero);
+        const platform = colliders.find(body => body.gamePlatform);
+
+        if (hero && platform) {
+            this.hero.stayOnPlatform(platform.gamePlatform);
+        }
     }
     createPlatforms() {
         this.platfroms = new Platforms();
