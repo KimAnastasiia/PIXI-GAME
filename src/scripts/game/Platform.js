@@ -61,6 +61,11 @@ export class Platform {
         tile.x = col * tile.width;
         tile.y = row * tile.height;
     }
+    destroy() {
+        Matter.World.remove(App.physics.world, this.body);
+        this.diamonds.forEach(diamond => diamond.destroy());
+        this.container.destroy();
+    }
     move() {
         if (this.body) {
             Matter.Body.setPosition(this.body, {x: this.body.position.x + this.dx, y: this.body.position.y});

@@ -30,6 +30,10 @@ export class Platforms {
         this.platforms.push(platform)
         this.current= platform
     }
+    destroy() {
+        this.platforms.forEach(platform => platform.destroy());
+        this.container.destroy();
+    }
     update() {
         if ((this.current.container.x + this.current.container.width) < window.innerWidth) {
             this.createPlatform(this.randomData);

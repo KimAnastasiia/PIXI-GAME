@@ -20,6 +20,9 @@ export class Background {
         this.container.addChild(sprite)
         this.sprites.push(sprite)
     }
+    destroy() {
+        this.container.destroy();
+    }
     update(dt){
         const offset = this.speed * dt;
 
