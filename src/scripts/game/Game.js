@@ -2,6 +2,7 @@ import { App } from "../system/App";
 import { Scene } from "../system/Scene";
 import { Background } from "./Background";
 import { Hero } from "./Hero";
+import { LabelScore } from "./LabelScore";
 import { Platforms } from "./Platforms";
 import * as Matter from 'matter-js';
 export class Game extends Scene {
@@ -10,6 +11,7 @@ export class Game extends Scene {
         this.createHero()
         this.createPlatforms()
         this.setEvents();
+        this.createUI();
     }
     setEvents() {
         Matter.Events.on(App.physics, 'collisionStart', this.onCollisionStart.bind(this));
@@ -42,6 +44,13 @@ export class Game extends Scene {
     createBackground() {
         this.bg = new Background();
         this.container.addChild(this.bg.container) 
+    }
+    createUI() {
+        this.labelScore = new LabelScore();
+        this.container.addChild(this.labelScore);
+        this.hero.sprite.on("score", () => {
+            this.labelScore.renderScore(this.hero.score);
+        });
     }
     update(dt){
         this.bg.update(dt)

@@ -4,6 +4,17 @@ import { Tools } from "../system/Tools";
 export const Config = {
     bgSpeed: 2,
     loader: Tools.massiveRequire(require["context"]('./../../sprites/', true, /\.(mp3|png|jpe?g)$/)),
+    score: {
+        x: 10,
+        y: 10,
+        anchor: 0,
+        style: {
+            fontFamily: "Verdana",
+            fontWeight: "bold",
+            fontSize: 44,
+            fill: ["#FF7F50"]
+        }
+    },
     scenes: {
         "Game": Game
     },

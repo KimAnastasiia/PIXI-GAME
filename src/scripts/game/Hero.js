@@ -18,6 +18,7 @@ export class Hero {
         Matter.World.remove(App.physics.world, diamond.body);
         diamond.sprite.destroy();
         diamond.sprite = null;
+        this.sprite.emit("score");
     }
     stayOnPlatform(platform) {
         this.platform = platform;
